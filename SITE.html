@@ -1,152 +1,224 @@
-<html>
-  <head>
-    <title>Your Gaming Hardware Store</title>
-    <style>
-      body {
-        background-color: #2d2d2d;
-        color: white;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Gaming Hardware Store</title>
+  <style>
+    body {
+      background-color: #2d2d2d;
+      color: white;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-      header {
-        background-color: #1e40af;
-        padding: 20px;
-        text-align: center;
-      }
+    header {
+      background-color: #1e40af;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
 
-      nav {
-        background-color: #111;
-        padding: 10px;
-        text-align: center;
-      }
+    header h1 {
+      margin: 0;
+      font-size: 2.2em;
+      letter-spacing: 1px;
+    }
 
-      nav a {
-        color: white;
-        margin: 0 15px;
-        text-decoration: none;
-        font-weight: bold;
-      }
+    nav {
+      background-color: #111;
+      padding: 12px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
 
-      main {
-        padding: 20px;
-      }
+    nav a {
+      color: white;
+      margin: 0 18px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      transition: color 0.3s;
+    }
 
-      h2 {
-        margin-top: 40px;
+    nav a:hover {
+      color: #1e40af;
+    }
+
+    main {
+      padding: 30px 20px;
+    }
+
+    h2 {
+      margin-top: 50px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #1e40af;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    table {
+      width: 100%;
+      table-layout: fixed;
+      margin-bottom: 50px;
+      border-collapse: separate;
+      border-spacing: 15px;
+    }
+
+    td {
+      text-align: center;
+      vertical-align: top;
+      padding: 20px;
+      background-color: #3a3a3a;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    td:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+    }
+
+    td img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    .add-to-cart {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 20px;
+      background-color: #1e40af;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .add-to-cart:hover {
+      background-color: #2563eb;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #111;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 -4px 6px rgba(0,0,0,0.3);
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    /* Responsive design */
+    @media screen and (max-width: 900px) {
+      table, tr, td {
+        display: block;
+        width: 100%;
+      }
+      td {
         margin-bottom: 20px;
       }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Gaming Hardware Store</h1>
+  </header>
 
-      table {
-        width: 100%;
-        table-layout: fixed;
-        margin-bottom: 40px;
-      }
+  <nav>
+    <a href="#gpus">GPUs</a>
+    <a href="#cpus">CPUs</a>
+    <a href="#ram">RAM</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-      td {
-        text-align: center;
-        vertical-align: top;
-        padding: 15px;
-        background-color: #3a3a3a;
-        border-radius: 10px;
-      }
+  <main>
+    <h2 id="gpus">GPUs</h2>
+    <table>
+      <tr>
+        <td>
+          <b>NVIDIA RTX 4090</b><br>
+          PRICE: $1599<br>
+          <img src="https://hardwaretimes.com/wp-content/uploads/2022/09/NVIDIA-GeForce-RTX-4090-Graphics-Card-_1-low_res-scale-4_00x-Custom.png" width="300px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+        <td>
+          <b>NVIDIA RTX 4080</b><br>
+          PRICE: $1200<br>
+          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4080/geforce-rtx-4080-super-og-1200x630.jpg" width="300px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+        <td>
+          <b>NVIDIA RTX 4070</b><br>
+          PRICE: $899<br>
+          <img src="https://www.jonpeddie.com/wp-content/uploads/2023/04/RTX_4070_012.png" width="300px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+      </tr>
+    </table>
 
-      td img {
-        max-width: 100%;
-        border-radius: 5px;
-        margin-top: 10px;
-      }
+    <h2 id="cpus">CPUs</h2>
+    <table>
+      <tr>
+        <td>
+          <b>Intel Core i7</b><br>
+          PRICE: $350<br>
+          <img src="https://media.ldlc.com/r1600/ld/products/00/06/09/57/LD0006095758.jpg" width="200px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+        <td>
+          <b>AMD Ryzen 5</b><br>
+          PRICE: $220<br>
+          <img src="https://ares.shiftdelete.net/2023/06/AMD-Ryzen-5.jpg" width="200px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+        <td>
+          <b>AMD Ryzen 7</b><br>
+          PRICE: $330<br>
+          <img src="https://ares.shiftdelete.net/2023/06/AMD-Ryzen-5.jpg" width="200px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+      </tr>
+    </table>
 
-      footer {
-        background-color: #111;
-        padding: 20px;
-        text-align: center;
-        margin-top: 40px;
-      }
-    </style>
-  </head>
+    <h2 id="ram">RAM</h2>
+    <table>
+      <tr>
+        <td>
+          <b>16GB DDR4</b><br>
+          PRICE: $70<br>
+          <img src="https://goldentechstore.com.ar/wp-content/uploads/MEM212.jpg" width="150px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+        <td>
+          <b>32GB DDR4</b><br>
+          PRICE: $130<br>
+          <img src="https://katech.com.ar/wp-content/uploads/x1-382-jpg.webp" width="150px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+        <td>
+          <b>64GB DDR4</b><br>
+          PRICE: $250<br>
+          <img src="https://media.ldlc.com/r1600/ld/products/00/05/58/79/LD0005587987_2_0005588327_0005588377_0005588402.jpg" width="150px"><br>
+          <button class="add-to-cart">Add to Cart</button>
+        </td>
+      </tr>
+    </table>
+  </main>
 
-  <body>
-    <header>
-      <h1>Your Gaming Hardware Store</h1>
-    </header>
-
-    <nav>
-      <a href="#gpus">GPUs</a>
-      <a href="#cpus">CPUs</a>
-      <a href="#ram">RAM</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <main>
-      <h2 id="gpus">GPUs</h2>
-      <table>
-        <tr>
-          <td>
-            <b>NVIDIA RTX 4090</b><br>
-            PRICE: $1599<br>
-            <img src="https://hardwaretimes.com/wp-content/uploads/2022/09/NVIDIA-GeForce-RTX-4090-Graphics-Card-_1-low_res-scale-4_00x-Custom.png" width="300px">
-          </td>
-          <td>
-            <b>NVIDIA RTX 4080</b><br>
-            PRICE: $1200<br>
-            <img src= "https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4080/geforce-rtx-4080-super-og-1200x630.jpg" width="300px">
-          </td>
-          <td>
-            <b>NVIDIA RTX 4070</b><br>
-            PRICE: $899<br>
-            <img src="https://www.jonpeddie.com/wp-content/uploads/2023/04/RTX_4070_012.png" width="300px">
-          </td>
-        </tr>
-      </table>
-
-      <h2 id="cpus">CPUs</h2>
-      <table>
-        <tr>
-          <td>
-            <b>Intel Core i7</b><br>
-            PRICE: $350<br>
-            <img src="https://media.ldlc.com/r1600/ld/products/00/06/09/57/LD0006095758.jpg" width="200px">
-          </td>
-          <td>
-            <b>AMD Ryzen 5</b><br>
-            PRICE: $220<br>
-            <img src="https://ares.shiftdelete.net/2023/06/AMD-Ryzen-5.jpg" width="200px">
-          </td>
-          <td>
-            <b>AMD Ryzen 7</b><br>
-            PRICE: $330<br>
-            <img src="https://ares.shiftdelete.net/2023/06/AMD-Ryzen-5.jpg" width="200px">
-          </td>
-        </tr>
-      </table>
-
-      <h2 id="ram">RAM</h2>
-      <table>
-        <tr>
-          <td>
-            <b>16GB DDR4</b><br>
-            PRICE: $70<br>
-            <img src="https://goldentechstore.com.ar/wp-content/uploads/MEM212.jpg" width="150px">
-          </td>
-          <td>
-            <b>32GB DDR4</b><br>
-            PRICE: $130<br>
-            <img src="https://katech.com.ar/wp-content/uploads/x1-382-jpg.webp" width="150px">
-          </td>
-          <td>
-            <b>64GB DDR4</b><br>
-            PRICE: $250<br>
-            <img src="https://media.ldlc.com/r1600/ld/products/00/05/58/79/LD0005587987_2_0005588327_0005588377_0005588402.jpg" width="150px">
-          </td>
-        </tr>
-      </table>
-    </main>
-
-    <footer id="contact">
-      <p>Contact: PCshop@gmail.com</p>
-      <p>© Your Gaming Hardware Store</p>
-    </footer>
-  </body>
+  <footer id="contact">
+    <p>Contact: PCshop@gmail.com</p>
+    <p>© Your Gaming Hardware Store</p>
+  </footer>
+</body>
 </html>
+
