@@ -1,8 +1,75 @@
 <html>
-  <body>
+  <head>
+    <title>Your Gaming Hardware Store</title>
+    <style>
+      body {
+        background-color: #2d2d2d;
+        color: white;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
+      header {
+        background-color: #1e40af;
+        padding: 20px;
+        text-align: center;
+      }
+
+      nav {
+        background-color: #111;
+        padding: 10px;
+        text-align: center;
+      }
+
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      h2 {
+        margin-top: 40px;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        table-layout: fixed;
+        margin-bottom: 40px;
+      }
+
+      td {
+        text-align: center;
+        vertical-align: top;
+        padding: 15px;
+        background-color: #3a3a3a;
+        border-radius: 10px;
+      }
+
+      td img {
+        max-width: 100%;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      footer {
+        background-color: #111;
+        padding: 20px;
+        text-align: center;
+        margin-top: 40px;
+      }
+    </style>
+  </head>
+
+  <body>
     <header>
-      <h1>Your gaming hardware store</h1>
+      <h1>Your Gaming Hardware Store</h1>
     </header>
 
     <nav>
@@ -13,127 +80,73 @@
     </nav>
 
     <main>
-
-      <!-- GPUs -->
       <h2 id="gpus">GPUs</h2>
-      <table align="center">
+      <table>
         <tr>
-          <td align="center">
-            <p><b>NVIDIA RTX 4090</b></p>
-            <p>PRICE: $1599</p>
-            <img src="https://m.media-amazon.com/images/I/81lY7bJ6vDL._AC_SL1500_.jpg" width="230">
+          <td>
+            <b>NVIDIA RTX 4090</b><br>
+            PRICE: $1599<br>
+            <img src="https://dlcdnwebimgs.asus.com/gain/2F3B5145-C902-4F74-B041-4C47F526E242" width="300px">
           </td>
-
-          <td align="center">
-            <p><b>NVIDIA RTX 4080</b></p>
-            <p>PRICE: $1200</p>
-            <img src="https://m.media-amazon.com/images/I/71YkZ6Z6xLL._AC_SL1500_.jpg" width="230">
+          <td>
+            <b>NVIDIA RTX 4080</b><br>
+            PRICE: $1200<br>
+            <img src="https://images.nvidia.com/content/dam/en-zz/Solutions/geforce/rtx-40-series/rtx-4080/geforce-rtx-4080-gallery-01.png" width="300px">
           </td>
-
-          <td align="center">
-            <p><b>NVIDIA RTX 4070</b></p>
-            <p>PRICE: $600</p>
-            <img src="https://m.media-amazon.com/images/I/71j1pRvaqFL._AC_SL1500_.jpg" width="230">
+          <td>
+            <b>NVIDIA RTX 4070</b><br>
+            PRICE: $899<br>
+            <img src="https://images.nvidia.com/content/dam/en-zz/Solutions/geforce/rtx-40-series/rtx-4070/geforce-rtx-4070-gallery-01.png" width="300px">
           </td>
         </tr>
       </table>
 
-      <!-- CPUs -->
       <h2 id="cpus">CPUs</h2>
-      <table align="center">
+      <table>
         <tr>
-          <td align="center">
-            <p><b>Intel Core i7</b></p>
-            <p>PRICE: $350</p>
-            <img src="https://m.media-amazon.com/images/I/61kR4Hf7PpL._AC_SL1000_.jpg" width="180">
+          <td>
+            <b>Intel Core i7</b><br>
+            PRICE: $350<br>
+            <img src="https://www.intel.com/content/dam/www/public/us/en/images/product/processor/core-i7-13700k-hero.png" width="200px">
           </td>
-
-          <td align="center">
-            <p><b>AMD Ryzen 5</b></p>
-            <p>PRICE: $220</p>
-            <img src="https://m.media-amazon.com/images/I/61fJwPjK6WL._AC_SL1000_.jpg" width="180">
+          <td>
+            <b>AMD Ryzen 5</b><br>
+            PRICE: $220<br>
+            <img src="https://www.amd.com/system/files/2022-11/CPU-Ryzen-5-5600X-01.png" width="200px">
           </td>
-
-          <td align="center">
-            <p><b>Intel Core i5</b></p>
-            <p>PRICE: $250</p>
-            <img src="https://m.media-amazon.com/images/I/61dGJcZLzFL._AC_SL1000_.jpg" width="180">
+          <td>
+            <b>AMD Ryzen 7</b><br>
+            PRICE: $330<br>
+            <img src="https://www.amd.com/system/files/2022-11/CPU-Ryzen-7-5800X-01.png" width="200px">
           </td>
         </tr>
       </table>
 
-      <!-- RAM -->
       <h2 id="ram">RAM</h2>
-      <table align="center">
+      <table>
         <tr>
-          <td align="center">
-            <p><b>16GB DDR4</b></p>
-            <p>PRICE: $70</p>
-            <img src="https://m.media-amazon.com/images/I/61vZkFZq4kL._AC_SL1500_.jpg" width="160">
+          <td>
+            <b>16GB DDR4</b><br>
+            PRICE: $70<br>
+            <img src="https://www.corsair.com/medias/sys_master/images/images/hb4/h2d/8817401672766/-CMW16GX4M2C3200C16-01.png" width="150px">
           </td>
-
-          <td align="center">
-            <p><b>32GB DDR4</b></p>
-            <p>PRICE: $130</p>
-            <img src="https://m.media-amazon.com/images/I/61xZt6Z5tPL._AC_SL1500_.jpg" width="160">
+          <td>
+            <b>32GB DDR4</b><br>
+            PRICE: $130<br>
+            <img src="https://www.corsair.com/medias/sys_master/images/images/h39/hc8/8823498752222/-CMK32GX4M2B3200C16-01.png" width="150px">
           </td>
-
-          <td align="center">
-            <p><b>64GB DDR4</b></p>
-            <p>PRICE: $240</p>
-            <img src="https://m.media-amazon.com/images/I/61lKQWyfYJL._AC_SL1500_.jpg" width="160">
+          <td>
+            <b>64GB DDR4</b><br>
+            PRICE: $250<br>
+            <img src="https://www.corsair.com/medias/sys_master/images/images/h9e/hc4/8834670213886/-CMK64GX4M2C3200C16-01.png" width="150px">
           </td>
         </tr>
       </table>
-
     </main>
 
     <footer id="contact">
       <p>Contact: PCshop@gmail.com</p>
-      <p>© Your gaming hardware store</p>
+      <p>© Your Gaming Hardware Store</p>
     </footer>
-
-    <style>
-      body {
-        background-color: #2d2d2d;
-        color: white;
-        font-family: Arial, sans-serif;
-      }
-
-      header {
-        background-color: #1e40af;
-        padding: 20px;
-        text-align: center;
-      }
-
-      nav {
-        text-align: center;
-        margin: 20px;
-      }
-
-      nav a {
-        color: white;
-        margin: 0 15px;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      table {
-        border-spacing: 60px; /* THIS spreads cards apart */
-        margin-bottom: 60px;
-      }
-
-      td {
-        padding: 25px;
-        background-color: #1f2933;
-        border-radius: 12px;
-        vertical-align: top;
-      }
-
-      img {
-        margin-top: 15px;
-      }
-    </style>
-
   </body>
 </html>
