@@ -21,13 +21,19 @@
           <td align="center">
             <p><b>NVIDIA RTX 4090</b></p>
             <p>PRICE: $1599</p>
-            <img src="https://dlcdnwebimgs.asus.com/gain/2F3B5145-C902-4F74-B041-4C47F526E242" width="250">
+            <img src="https://m.media-amazon.com/images/I/81lY7bJ6vDL._AC_SL1500_.jpg" width="230">
           </td>
 
           <td align="center">
             <p><b>NVIDIA RTX 4080</b></p>
             <p>PRICE: $1200</p>
-            <img src="https://images.nvidia.com/content/dam/en-zz/Solutions/geforce/rtx-40-series/rtx-4080-gallery-01.png" width="250">
+            <img src="https://m.media-amazon.com/images/I/71YkZ6Z6xLL._AC_SL1500_.jpg" width="230">
+          </td>
+
+          <td align="center">
+            <p><b>NVIDIA RTX 4070</b></p>
+            <p>PRICE: $600</p>
+            <img src="https://m.media-amazon.com/images/I/71j1pRvaqFL._AC_SL1500_.jpg" width="230">
           </td>
         </tr>
       </table>
@@ -39,13 +45,19 @@
           <td align="center">
             <p><b>Intel Core i7</b></p>
             <p>PRICE: $350</p>
-            <img src="https://www.intel.com/content/dam/www/public/us/en/images/product/processor/core-i7-13700k-hero.png" width="200">
+            <img src="https://m.media-amazon.com/images/I/61kR4Hf7PpL._AC_SL1000_.jpg" width="180">
           </td>
 
           <td align="center">
             <p><b>AMD Ryzen 5</b></p>
             <p>PRICE: $220</p>
-            <img src="https://www.amd.com/system/files/2022-11/CPU-Ryzen-5-5600X-01.png" width="200">
+            <img src="https://m.media-amazon.com/images/I/61fJwPjK6WL._AC_SL1000_.jpg" width="180">
+          </td>
+
+          <td align="center">
+            <p><b>Intel Core i5</b></p>
+            <p>PRICE: $250</p>
+            <img src="https://m.media-amazon.com/images/I/61dGJcZLzFL._AC_SL1000_.jpg" width="180">
           </td>
         </tr>
       </table>
@@ -57,13 +69,19 @@
           <td align="center">
             <p><b>16GB DDR4</b></p>
             <p>PRICE: $70</p>
-            <img src="https://www.corsair.com/medias/sys_master/images/images/hb4/h2d/8817401672766/-CMW16GX4M2C3200C16-01.png" width="150">
+            <img src="https://m.media-amazon.com/images/I/61vZkFZq4kL._AC_SL1500_.jpg" width="160">
           </td>
 
           <td align="center">
             <p><b>32GB DDR4</b></p>
             <p>PRICE: $130</p>
-            <img src="https://www.corsair.com/medias/sys_master/images/images/h39/hc8/8823498752222/-CMK32GX4M2B3200C16-01.png" width="150">
+            <img src="https://m.media-amazon.com/images/I/61xZt6Z5tPL._AC_SL1500_.jpg" width="160">
+          </td>
+
+          <td align="center">
+            <p><b>64GB DDR4</b></p>
+            <p>PRICE: $240</p>
+            <img src="https://m.media-amazon.com/images/I/61lKQWyfYJL._AC_SL1500_.jpg" width="160">
           </td>
         </tr>
       </table>
@@ -101,17 +119,21 @@
       }
 
       table {
-        border-spacing: 40px;
-        margin-bottom: 50px;
+        border-spacing: 60px; /* THIS spreads cards apart */
+        margin-bottom: 60px;
       }
 
       td {
-        padding: 20px;
+        padding: 25px;
         background-color: #1f2933;
-        border-radius: 10px;
+        border-radius: 12px;
+        vertical-align: top;
+      }
+
+      img {
+        margin-top: 15px;
       }
     </style>
 
   </body>
 </html>
-
