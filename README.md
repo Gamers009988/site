@@ -1,5 +1,6 @@
 <html>
   <body>
+
     <header>
       <h1>Your gaming hardware store</h1>
     </header>
@@ -13,49 +14,55 @@
 
     <main>
 
+      <!-- GPUs -->
       <h2 id="gpus">GPUs</h2>
       <table align="center">
         <tr>
           <td align="center">
-            <b>NVIDIA RTX 4090</b><br>
-            PRICE: $1599<br>
+            <p><b>NVIDIA RTX 4090</b></p>
+            <p>PRICE: $1599</p>
             <img src="https://dlcdnwebimgs.asus.com/gain/2F3B5145-C902-4F74-B041-4C47F526E242" width="250">
           </td>
+
           <td align="center">
-            <b>NVIDIA RTX 4080</b><br>
-            PRICE: $1200<br>
-            <img src="https://images.nvidia.com/content/dam/en-zz/Solutions/geforce/rtx-40-series/rtx-4080/geforce-rtx-4080-gallery-01.png" width="250">
+            <p><b>NVIDIA RTX 4080</b></p>
+            <p>PRICE: $1200</p>
+            <img src="https://images.nvidia.com/content/dam/en-zz/Solutions/geforce/rtx-40-series/rtx-4080-gallery-01.png" width="250">
           </td>
         </tr>
       </table>
 
+      <!-- CPUs -->
       <h2 id="cpus">CPUs</h2>
       <table align="center">
         <tr>
           <td align="center">
-            <b>Intel Core i7</b><br>
-            PRICE: $350<br>
+            <p><b>Intel Core i7</b></p>
+            <p>PRICE: $350</p>
             <img src="https://www.intel.com/content/dam/www/public/us/en/images/product/processor/core-i7-13700k-hero.png" width="200">
           </td>
+
           <td align="center">
-            <b>AMD Ryzen 5</b><br>
-            PRICE: $220<br>
+            <p><b>AMD Ryzen 5</b></p>
+            <p>PRICE: $220</p>
             <img src="https://www.amd.com/system/files/2022-11/CPU-Ryzen-5-5600X-01.png" width="200">
           </td>
         </tr>
       </table>
 
+      <!-- RAM -->
       <h2 id="ram">RAM</h2>
       <table align="center">
         <tr>
           <td align="center">
-            <b>16GB DDR4</b><br>
-            PRICE: $70<br>
+            <p><b>16GB DDR4</b></p>
+            <p>PRICE: $70</p>
             <img src="https://www.corsair.com/medias/sys_master/images/images/hb4/h2d/8817401672766/-CMW16GX4M2C3200C16-01.png" width="150">
           </td>
+
           <td align="center">
-            <b>32GB DDR4</b><br>
-            PRICE: $130<br>
+            <p><b>32GB DDR4</b></p>
+            <p>PRICE: $130</p>
             <img src="https://www.corsair.com/medias/sys_master/images/images/h39/hc8/8823498752222/-CMK32GX4M2B3200C16-01.png" width="150">
           </td>
         </tr>
@@ -72,6 +79,7 @@
       body {
         background-color: #2d2d2d;
         color: white;
+        font-family: Arial, sans-serif;
       }
 
       header {
@@ -80,14 +88,30 @@
         text-align: center;
       }
 
+      nav {
+        text-align: center;
+        margin: 20px;
+      }
+
+      nav a {
+        color: white;
+        margin: 0 15px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
       table {
-        margin-bottom: 40px;
+        border-spacing: 40px;
+        margin-bottom: 50px;
       }
 
       td {
         padding: 20px;
+        background-color: #1f2933;
+        border-radius: 10px;
       }
     </style>
 
   </body>
 </html>
+
