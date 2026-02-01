@@ -1,32 +1,35 @@
+<html>
+<head>
   <title>Your Gaming Hardware Store</title>
+
   <style>
     body {
       background-color: #2d2d2d;
       color: white;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
     }
 
+    
     header {
       background: linear-gradient(90deg, #1e40af, #3b82f6);
-      padding: 30px 20px;
+      padding: 35px 20px;
       text-align: center;
-      box-shadow: inset 0 -2px 4px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     }
 
     header h1 {
-      font-size: 2.6em;
       margin: 0;
+      font-size: 2.5em;
       letter-spacing: 1px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
     }
 
+ 
     nav {
       background-color: #111;
       padding: 12px;
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
 
     nav a {
@@ -34,8 +37,8 @@
       margin: 0 18px;
       text-decoration: none;
       font-weight: bold;
-      font-size: 1em;
     }
+
 
     main {
       padding: 30px 20px;
@@ -53,7 +56,6 @@
       width: 100%;
       table-layout: fixed;
       margin-bottom: 50px;
-      border-collapse: separate;
       border-spacing: 15px;
     }
 
@@ -72,6 +74,7 @@
       margin-top: 10px;
     }
 
+
     .add-to-cart {
       display: inline-block;
       margin-top: 12px;
@@ -83,20 +86,40 @@
       font-weight: bold;
     }
 
+  
     footer {
       background-color: #111;
-      padding: 25px 20px;
-      text-align: center;
-      box-shadow: 0 -4px 6px rgba(0,0,0,0.3);
+      padding: 30px 20px;
       margin-top: 40px;
     }
 
+    .footer-table {
+      width: 100%;
+      table-layout: fixed;
+    }
+
+    .footer-table td {
+      background-color: transparent;
+      box-shadow: none;
+      padding: 10px;
+      text-align: center;
+      vertical-align: top;
+    }
+
+    .footer-table a {
+      color: white;
+      text-decoration: none;
+    }
+
     footer p {
-      margin: 5px 0;
+      text-align: center;
+      margin-top: 20px;
     }
   </style>
 </head>
+
 <body>
+
   <header>
     <h1>Your Gaming Hardware Store</h1>
   </header>
@@ -109,6 +132,7 @@
   </nav>
 
   <main>
+
     <h2 id="gpus">GPUs</h2>
     <table>
       <tr>
@@ -118,12 +142,14 @@
           <img src="https://hardwaretimes.com/wp-content/uploads/2022/09/NVIDIA-GeForce-RTX-4090-Graphics-Card-_1-low_res-scale-4_00x-Custom.png" width="300px"><br>
           <a href="#" class="add-to-cart">Add to Cart</a>
         </td>
+
         <td>
           <b>NVIDIA RTX 4080</b><br>
           PRICE: $1200<br>
           <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4080/geforce-rtx-4080-super-og-1200x630.jpg" width="300px"><br>
           <a href="#" class="add-to-cart">Add to Cart</a>
         </td>
+
         <td>
           <b>NVIDIA RTX 4070</b><br>
           PRICE: $899<br>
@@ -142,12 +168,14 @@
           <img src="https://media.ldlc.com/r1600/ld/products/00/06/09/57/LD0006095758.jpg" width="200px"><br>
           <a href="#" class="add-to-cart">Add to Cart</a>
         </td>
+
         <td>
           <b>AMD Ryzen 5</b><br>
           PRICE: $220<br>
           <img src="https://ares.shiftdelete.net/2023/06/AMD-Ryzen-5.jpg" width="200px"><br>
           <a href="#" class="add-to-cart">Add to Cart</a>
         </td>
+
         <td>
           <b>AMD Ryzen 7</b><br>
           PRICE: $330<br>
@@ -166,12 +194,14 @@
           <img src="https://goldentechstore.com.ar/wp-content/uploads/MEM212.jpg" width="150px"><br>
           <a href="#" class="add-to-cart">Add to Cart</a>
         </td>
+
         <td>
           <b>32GB DDR4</b><br>
           PRICE: $130<br>
           <img src="https://katech.com.ar/wp-content/uploads/x1-382-jpg.webp" width="150px"><br>
           <a href="#" class="add-to-cart">Add to Cart</a>
         </td>
+
         <td>
           <b>64GB DDR4</b><br>
           PRICE: $250<br>
@@ -180,40 +210,38 @@
         </td>
       </tr>
     </table>
+
   </main>
 
   <footer id="contact">
-  <p><b>Your Gaming Hardware Store</b></p>
-  <p>High-performance PC parts for gamers and creators.</p>
+    <table class="footer-table">
+      <tr>
+        <td>
+          <b>Your Gaming Hardware Store</b><br><br>
+          High-performance PC parts<br>
+          for gamers and creators.
+        </td>
 
-  <br>
+        <td>
+          <b>Opening Hours</b><br><br>
+          Mon – Fri: 9:00 – 18:00<br>
+          Saturday: 10:00 – 16:00<br>
+          Sunday: Closed
+        </td>
 
-  <p><b>Opening Hours</b></p>
-  <p>Monday – Friday: 9:00 AM – 6:00 PM</p>
-  <p>Saturday: 10:00 AM – 4:00 PM</p>
-  <p>Sunday: Closed</p>
+        <td>
+          <b>Contact</b><br><br>
+          Email: PCshop@gmail.com<br>
+          Online Store<br><br>
+          <a href="#gpus">GPUs</a> |
+          <a href="#cpus">CPUs</a> |
+          <a href="#ram">RAM</a>
+        </td>
+      </tr>
+    </table>
 
-  <br>
-
-  <p><b>Contact</b></p>
-  <p>Email: PCshop@gmail.com</p>
-  <p>Location: Online Store</p>
-
-  <br>
-
-  <p>
-    <a href="#gpus">GPUs</a> |
-    <a href="#cpus">CPUs</a> |
-    <a href="#ram">RAM</a>
-  </p>
-
-  <br>
-
-  <p>© Your Gaming Hardware Store</p>
-</footer>
+    <p>© Your Gaming Hardware Store</p>
+  </footer>
 
 </body>
 </html>
-
-
- 
