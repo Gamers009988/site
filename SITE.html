@@ -1,250 +1,267 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Your Gaming Hardware Store</title>
 
-  <style>
-    body {
-      background-color: #2d2d2d;
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
+-- Luau | FPSOptimizer.client.lua | Roblox Studio | StarterPlayerScripts
 
-    /* Header */
-    header {
-      background: linear-gradient(90deg, #1e40af, #3b82f6);
-      padding: 35px 20px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local Lighting = game:GetService("Lighting")
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-      letter-spacing: 1px;
-      hover:5px;
-    }
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
 
-    
-    nav {
-      background-color: #111;
-      padding: 12px;
-      text-align: center;
-    }
+-- Configuration
+local TOGGLE_KEY = Enum.KeyCode.P
+local SAMPLE_WINDOW = 10
+local LOW_SAMPLE_COUNT = 1000
 
-    nav a {
-      color: white;
-      margin: 0 18px;
-      text-decoration: none;
-      font-weight: bold;
-      padding-bottom: 5px;
-      border-bottom: 2px solid #1e40af;
-    }
+local is_open = false
+local is_optimized = false
+local frame_times = {}
+local frame_time_sum = 0
+local last_frame = os.clock()
 
- 
-    main {
-      padding: 30px 20px;
-    }
+-- GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "FPSOptimizer"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.Parent = playerGui
 
-    h2 {
-      margin-top: 50px;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #1e40af;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
+local main = Instance.new("Frame")
+main.Size = UDim2.fromOffset(310, 255)
+main.Position = UDim2.new(0, 20, 0.5, -127)
+main.BackgroundColor3 = Color3.fromRGB(18, 20, 28)
+main.BorderSizePixel = 0
+main.Visible = false
+main.Parent = gui
 
-    table {
-      width: 100%;
-      table-layout: fixed;
-      margin-bottom: 50px;
-      border-spacing: 15px;
-    }
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 12)
+corner.Parent = main
 
-    td {
-      text-align: center;
-      vertical-align: top;
-      padding: 20px;
-      background-color: #3a3a3a;
-      border-radius: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.5);
-    }
+local stroke = Instance.new("UIStroke")
+stroke.Color = Color3.fromRGB(65, 105, 255)
+stroke.Thickness = 1.5
+stroke.Parent = main
 
-    td img {
-      max-width: 100%;
-      border-radius: 8px;
-      margin-top: 10px;
-    }
+local function create_label(name, text, position, size, font_size)
+	local label = Instance.new("TextLabel")
+	label.Name = name
+	label.Size = size
+	label.Position = position
+	label.BackgroundTransparency = 1
+	label.Text = text
+	label.TextColor3 = Color3.fromRGB(235, 240, 255)
+	label.TextSize = font_size
+	label.Font = Enum.Font.GothamMedium
+	label.TextXAlignment = Enum.TextXAlignment.Left
+	label.Parent = main
+	return label
+end
 
+create_label(
+	"Title",
+	"FPS OPTIMIZER",
+	UDim2.fromOffset(18, 12),
+	UDim2.fromOffset(250, 30),
+	20
+).Font = Enum.Font.GothamBold
 
-    .add-to-cart {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 10px 20px;
-      background-color: #1e40af;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
+local fps_label = create_label(
+	"FPS",
+	"FPS: --",
+	UDim2.fromOffset(20, 55),
+	UDim2.fromOffset(270, 30),
+	18
+)
 
+local avg_label = create_label(
+	"Average",
+	"Average FPS: --",
+	UDim2.fromOffset(20, 90),
+	UDim2.fromOffset(270, 25),
+	15
+)
 
-    footer {
-      background-color: #111;
-      padding: 30px 20px;
-      margin-top: 40px;
-    }
+local low_label = create_label(
+	"Low",
+	"0.1% Low: collecting...",
+	UDim2.fromOffset(20, 120),
+	UDim2.fromOffset(270, 25),
+	15
+)
 
-    .footer-table {
-      width: 100%;
-      table-layout: fixed;
-    }
+local status_label = create_label(
+	"Status",
+	"Status: Normal",
+	UDim2.fromOffset(20, 153),
+	UDim2.fromOffset(270, 25),
+	14
+)
 
-    .footer-table td {
-      background-color: transparent;
-      box-shadow: none;
-      padding: 10px;
-      text-align: center;
-      vertical-align: top;
-    }
+local optimize_button = Instance.new("TextButton")
+optimize_button.Name = "Optimize"
+optimize_button.Size = UDim2.fromOffset(270, 42)
+optimize_button.Position = UDim2.fromOffset(20, 195)
+optimize_button.BackgroundColor3 = Color3.fromRGB(55, 105, 255)
+optimize_button.Text = "OPTIMIZE"
+optimize_button.TextColor3 = Color3.new(1, 1, 1)
+optimize_button.TextSize = 17
+optimize_button.Font = Enum.Font.GothamBold
+optimize_button.Parent = main
 
-    .footer-table a {
-      color: white;
-      text-decoration: none;
-    }
+local button_corner = Instance.new("UICorner")
+button_corner.CornerRadius = UDim.new(0, 8)
+button_corner.Parent = optimize_button
 
-    footer p {
-      text-align: center;
-      margin-top: 20px;
-    }
-  </style>
-</head>
+-- Toggle UI
+UserInputService.InputBegan:Connect(function(input, processed)
+	if processed then
+		return
+	end
 
-<body>
+	if input.KeyCode == TOGGLE_KEY then
+		is_open = not is_open
+		main.Visible = is_open
+	end
+end)
 
-  <header>
-    <h1>Your Gaming Hardware Store</h1>
-  </header>
+-- FPS measurement
+RunService.RenderStepped:Connect(function()
+	local now = os.clock()
+	local delta = now - last_frame
+	last_frame = now
 
-  <nav>
-    <a href="#gpus">GPUs</a>
-    <a href="#cpus">CPUs</a>
-    <a href="#ram">RAM</a>
-    <a href="#contact">Contact</a>
-  </nav>
+	if delta <= 0 then
+		return
+	end
 
-  <main>
+	local fps = 1 / delta
 
-    <h2 id="gpus">GPUs</h2>
-    <table>
-      <tr>
-        <td>
-          <b>NVIDIA RTX 4090</b><br>
-          PRICE: $1599<br>
-          <img src="https://hardwaretimes.com/wp-content/uploads/2022/09/NVIDIA-GeForce-RTX-4090-Graphics-Card-_1-low_res-scale-4_00x-Custom.png" width="300px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
+	table.insert(frame_times, delta)
+	frame_time_sum += delta
 
-        <td>
-          <b>NVIDIA RTX 4080</b><br>
-          PRICE: $1200<br>
-          <img src="https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4080/geforce-rtx-4080-super-og-1200x630.jpg" width="300px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
+	while #frame_times > LOW_SAMPLE_COUNT do
+		frame_time_sum -= table.remove(frame_times, 1)
+	end
 
-        <td>
-          <b>NVIDIA RTX 4070</b><br>
-          PRICE: $899<br>
-          <img src="https://www.jonpeddie.com/wp-content/uploads/2023/04/RTX_4070_012.png" width="300px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
-      </tr>
-    </table>
+	fps_label.Text = string.format("FPS: %d", math.floor(fps + 0.5))
 
-    <h2 id="cpus">CPUs</h2>
-    <table>
-      <tr>
-        <td>
-          <b>Intel Core i7</b><br>
-          PRICE: $350<br>
-          <img src="https://media.ldlc.com/r1600/ld/products/00/06/09/57/LD0006095758.jpg" width="200px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
+	if #frame_times >= 2 then
+		-- Harmonic average of FPS = samples / total frame time
+		local average_fps = #frame_times / frame_time_sum
+		avg_label.Text = string.format("Average FPS: %.1f", average_fps)
+	end
 
-        <td>
-          <b>AMD Ryzen 5</b><br>
-          PRICE: $220<br>
-          <img src="https://ares.shiftdelete.net/2023/06/AMD-Ryzen-5.jpg" width="200px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
+	if #frame_times >= LOW_SAMPLE_COUNT then
+		-- Approximate 0.1% low using the slowest frame in the window.
+		local slowest_frame = 0
 
-        <td>
-          <b>AMD Ryzen 7</b><br>
-          PRICE: $330<br>
-          <img src="https://ares.shiftdelete.net/2023/06/AMD-Ryzen-5.jpg" width="200px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
-      </tr>
-    </table>
+		for _, frame_time in ipairs(frame_times) do
+			if frame_time > slowest_frame then
+				slowest_frame = frame_time
+			end
+		end
 
-    <h2 id="ram">RAM</h2>
-    <table>
-      <tr>
-        <td>
-          <b>16GB DDR4</b><br>
-          PRICE: $70<br>
-          <img src="https://goldentechstore.com.ar/wp-content/uploads/MEM212.jpg" width="150px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
+		local low_fps = 1 / slowest_frame
+		low_label.Text = string.format("0.1%% Low: %.1f FPS", low_fps)
+	else
+		low_label.Text = string.format(
+			"0.1%% Low: collecting %d/%d",
+			#frame_times,
+			LOW_SAMPLE_COUNT
+		)
+	end
+end)
 
-        <td>
-          <b>32GB DDR4</b><br>
-          PRICE: $130<br>
-          <img src="https://katech.com.ar/wp-content/uploads/x1-382-jpg.webp" width="150px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
+-- Save original settings before optimization
+local saved_settings = {}
+local saved_quality = nil
 
-        <td>
-          <b>64GB DDR4</b><br>
-          PRICE: $250<br>
-          <img src="https://media.ldlc.com/r1600/ld/products/00/05/58/79/LD0005587987_2_0005588327_0005588377_0005588402.jpg" width="150px"><br>
-          <a href="#" class="add-to-cart">Add to Cart</a>
-        </td>
-      </tr>
-    </table>
+local function save_property(instance, property)
+	local success, value = pcall(function()
+		return instance[property]
+	end)
 
-  </main>
+	if success then
+		saved_settings[instance] = saved_settings[instance] or {}
+		saved_settings[instance][property] = value
+	end
+end
 
-  <footer id="contact">
-    <table class="footer-table">
-      <tr>
-        <td>
-          <b>Your Gaming Hardware Store</b><br><br>
-          High-performance PC parts<br>
-          for gamers and creators.
-        </td>
+local function change_property(instance, property, value)
+	pcall(function()
+		instance[property] = value
+	end)
+end
 
-        <td>
-          <b>Opening Hours</b><br><br>
-          Mon – Fri: 9:00 – 18:00<br>
-          Saturday: 10:00 – 16:00<br>
-          Sunday: Closed
-        </td>
+local function optimize_instance(instance)
+	if instance:IsA("ParticleEmitter") then
+		save_property(instance, "Enabled")
+		save_property(instance, "Rate")
+		change_property(instance, "Rate", 0)
 
-        <td>
-          <b>Contact</b><br><br>
-          Email: PCshop@gmail.com<br>
-          Online Store<br><br>
-          <a href="#gpus">GPUs</a> |
-          <a href="#cpus">CPUs</a> |
-          <a href="#ram">RAM</a>
-        </td>
-      </tr>
-    </table>
+	elseif instance:IsA("Trail") or instance:IsA("Beam") then
+		save_property(instance, "Enabled")
+		change_property(instance, "Enabled", false)
 
-    <p>© Your Gaming Hardware Store</p>
-  </footer>
+	elseif instance:IsA("Fire")
+		or instance:IsA("Smoke")
+		or instance:IsA("Sparkles") then
 
-</body>
-</html>
+		save_property(instance, "Enabled")
+		change_property(instance, "Enabled", false)
+
+	elseif instance:IsA("PointLight")
+		or instance:IsA("SpotLight")
+		or instance:IsA("SurfaceLight") then
+
+		save_property(instance, "Shadows")
+		change_property(instance, "Shadows", false)
+
+	elseif instance:IsA("PostEffect") then
+		save_property(instance, "Enabled")
+		change_property(instance, "Enabled", false)
+	end
+end
+
+local function optimize_game()
+	if is_optimized then
+		return
+	end
+
+	is_optimized = true
+
+	status_label.Text = "Status: Optimizing..."
+	optimize_button.Text = "OPTIMIZED"
+	optimize_button.BackgroundColor3 = Color3.fromRGB(35, 160, 95)
+
+	-- Attempt to lower Roblox graphics quality.
+	local success, settings = pcall(function()
+		return UserSettings():GetService("UserGameSettings")
+	end)
+
+	if success and settings then
+		pcall(function()
+			saved_quality = settings.SavedQualityLevel
+			settings.SavedQualityLevel =
+				Enum.SavedQualitySetting.QualityLevel1
+		end)
+	end
+
+	-- Reduce expensive visual effects.
+	for _, instance in ipairs(game:GetDescendants()) do
+		optimize_instance(instance)
+	end
+
+	-- Optimize newly created effects too.
+	game.DescendantAdded:Connect(function(instance)
+		if is_optimized then
+			optimize_instance(instance)
+		end
+	end)
+
+	status_label.Text = "Status: Optimized"
+end
+
+optimize_button.MouseButton1Click:Connect(optimize_game)
